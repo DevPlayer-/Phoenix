@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 
 import wx
-import wx.aui
+try:
+    import wx.aui as aui
+except ImportError:
+    import wx.lib.agw.aui as aui
 
 
 text = """\
@@ -19,7 +22,7 @@ class TestPanel(wx.Panel):
         self.log = log
         wx.Panel.__init__(self, parent, -1)
 
-        self.nb = wx.aui.AuiNotebook(self)
+        self.nb = aui.AuiNotebook(self)
         page = wx.TextCtrl(self.nb, -1, text, style=wx.TE_MULTILINE)
         self.nb.AddPage(page, "Welcome")
 
